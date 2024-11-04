@@ -1,0 +1,21 @@
+# countdown.py
+from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime, timedelta
+
+# Sätt slutdatum och tid för nedräkningen
+end_time = datetime(2024, 12, 31, 23, 59, 59)
+now = datetime.now()
+remaining = end_time - now
+
+# Formatera nedräkningen i dagar, timmar och minuter
+days, remainder = divmod(remaining.total_seconds(), 86400)
+hours, remainder = divmod(remainder, 3600)
+minutes, _ = divmod(remainder, 60)
+countdown_text = f"{int(days)}d {int(hours)}h {int(minutes)}m kvar"
+
+# Skapa bilden
+img = Image.new('RGB', (400, 100), color=(255, 255, 255))
+draw = ImageDraw.Draw(img)
+font = ImageFont.load_default()
+draw.text((10, 40), countdown_text, font=font, fill=(0, 0, 0))
+img.save("/path/to/countdown_image.png")
