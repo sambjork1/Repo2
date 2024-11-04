@@ -1,0 +1,36 @@
+name: Update Countdown Image
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Kör varje minut
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install pillow
+
+    - name: Generate countdown image
+      run: |
+        python countdown.py
+
+    - name: Commit and push image
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "GitHub Actions"
+        git add countdown_image.png
+        git commit -m "Update countdown image"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
