@@ -1,9 +1,8 @@
-# countdown.py
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 
 # Sätt slutdatum och tid för nedräkningen
-end_time = datetime(2024, 12, 31, 23, 59, 59)
+end_time = datetime(2024, 12, 31, 23, 59, 59)  # Ändra detta datum till det du vill räkna ner till
 now = datetime.now()
 remaining = end_time - now
 
