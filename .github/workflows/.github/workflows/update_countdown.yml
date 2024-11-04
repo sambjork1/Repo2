@@ -26,11 +26,12 @@ jobs:
         python countdown.py
 
     - name: Commit and push image
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "GitHub Actions"
-        git add countdown_image.png
-        git commit -m "Update countdown image"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    git config --local user.email "github-actions[bot]@users.noreply.github.com"
+    git config --local user.name "GitHub Actions"
+    git add countdown_image.png  # Här läggs bilden till för commit
+    git commit -m "Update countdown image"
+    git push
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
